@@ -12,8 +12,8 @@ class BaseAppBar extends StatelessWidget {
 
   final LinearGradient appBarLinear = LinearGradient(
     colors: [
-      ColorName.tabbarColor.withOpacity(.1),
-      ColorName.primary.withOpacity(.1),
+      ColorName.tabbarColor.withValues(alpha: .1),
+      ColorName.primary.withValues(alpha: .1),
     ],
     stops: const [0.0, 1.0],
     begin: FractionalOffset.topCenter,

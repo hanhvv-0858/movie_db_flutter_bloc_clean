@@ -2,6 +2,7 @@
 import 'dart:io';
 
 // Package imports:
+import 'package:dio/dio.dart';
 import 'package:retrofit/dio.dart';
 
 // Project imports:
@@ -19,6 +20,7 @@ class HomeRepositoryImpl implements HomeRepository {
   HomeRepositoryImpl(this._theMovieDbService, this._appCache);
 
   final TheMovieDbService _theMovieDbService;
+  // ignore: unused_field
   final AppCache _appCache;
 
   @override
@@ -38,8 +40,12 @@ class HomeRepositoryImpl implements HomeRepository {
       return DataFailed(
         ApiError(message: httpResponse.response.statusMessage),
       );
-    } on ApiError catch (e) {
-      return DataFailed(e);
+    } on DioException catch (e) {
+      final data = e.response?.data;
+      final message = data is Map ? data['status_message'] as String? : null;
+      return DataFailed(ApiError(message: message ?? e.message));
+    } catch (e) {
+      return DataFailed(ApiError(message: e.toString()));
     }
   }
 
@@ -60,8 +66,12 @@ class HomeRepositoryImpl implements HomeRepository {
       return DataFailed(
         ApiError(message: httpResponse.response.statusMessage),
       );
-    } on ApiError catch (e) {
-      return DataFailed(e);
+    } on DioException catch (e) {
+      final data = e.response?.data;
+      final message = data is Map ? data['status_message'] as String? : null;
+      return DataFailed(ApiError(message: message ?? e.message));
+    } catch (e) {
+      return DataFailed(ApiError(message: e.toString()));
     }
   }
 
@@ -82,8 +92,12 @@ class HomeRepositoryImpl implements HomeRepository {
       return DataFailed(
         ApiError(message: httpResponse.response.statusMessage),
       );
-    } on ApiError catch (e) {
-      return DataFailed(e);
+    } on DioException catch (e) {
+      final data = e.response?.data;
+      final message = data is Map ? data['status_message'] as String? : null;
+      return DataFailed(ApiError(message: message ?? e.message));
+    } catch (e) {
+      return DataFailed(ApiError(message: e.toString()));
     }
   }
 

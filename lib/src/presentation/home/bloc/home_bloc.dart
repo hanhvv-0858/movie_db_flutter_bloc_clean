@@ -167,29 +167,29 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     HomeCheckFavorite event,
     Emitter<HomeState> emit,
   ) async {
-    final bool? result = await _checkFavoriteHomeUseCase.call(
+    await _checkFavoriteHomeUseCase.call(
       params: MovieModel(),
     );
-    // TODO: Implement method
+    // TODO(dev): Implement method
   }
 
   Future<void> removeFavorite(
     HomeRemoveFavorite event,
     Emitter<HomeState> emit,
   ) async {
-    final bool? result = await _removeFavoriteHomeUseCase.call(
+    await _removeFavoriteHomeUseCase.call(
       params: MovieModel(),
     );
-    // TODO: Implement method
+    // TODO(dev): Implement method
   }
 
   Future<void> addFavorite(
     HomeAddFavorite event,
     Emitter<HomeState> emit,
   ) async {
-    final bool? result = await _addFavoriteHomeUseCase.call(
+    await _addFavoriteHomeUseCase.call(
       params: MovieModel(),
     );
-    // TODO: Implement method
+    // TODO(dev): Implement method
   }
 }

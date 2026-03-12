@@ -51,8 +51,11 @@ class PopularBloc extends Bloc<PopularEvent, PopularState> {
       );
 
   final GetTopRatedUseCase _getTopRatedUseCase;
+  // ignore: unused_field
   final CheckFavoriteHomeUseCase _checkFavoriteHomeUseCase;
+  // ignore: unused_field
   final RemoveFavoriteHomeUseCase _removeFavoriteHomeUseCase;
+  // ignore: unused_field
   final AddFavoriteHomeUseCase _addFavoriteHomeUseCase;
   int page = 1;
 

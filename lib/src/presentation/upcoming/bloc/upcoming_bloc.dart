@@ -51,8 +51,11 @@ class UpcomingBloc extends Bloc<PopularEvent, UpcomingState> {
       );
 
   final GetUpcomingUseCase _getUpcomingUseCase;
+  // ignore: unused_field
   final CheckFavoriteHomeUseCase _checkFavoriteHomeUseCase;
+  // ignore: unused_field
   final RemoveFavoriteHomeUseCase _removeFavoriteHomeUseCase;
+  // ignore: unused_field
   final AddFavoriteHomeUseCase _addFavoriteHomeUseCase;
   int page = 1;
 

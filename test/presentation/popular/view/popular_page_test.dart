@@ -1,7 +1,10 @@
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 // Project imports:
+import 'package:movie_db_flutter_bloc_clean/src/core/request/home_request/get_home_request.dart';
+import 'package:movie_db_flutter_bloc_clean/src/core/resource/data_source.dart';
 import 'package:movie_db_flutter_bloc_clean/src/injectable.dart';
 import 'package:movie_db_flutter_bloc_clean/src/presentation/home/bloc/home_bloc.dart';
 import 'package:movie_db_flutter_bloc_clean/src/presentation/home/view/home_page.dart';
@@ -17,6 +20,7 @@ Future<void> main() async {
   late MockRemoveFavoriteHomeUseCase mockRemoveFavoriteHomeUseCase;
   late MockAddFavoriteHomeUseCase mockAddFavoriteHomeUseCase;
   setUpAll(() async {
+    registerFallbackValue(GetMovieRequest('', 0, ''));
     configureDependencies();
     mockGetUpcomingUseCase = MockGetUpcomingUseCase();
     mockGetTopRatedUseCase = MockGetTopRatedUseCase();
@@ -24,6 +28,12 @@ Future<void> main() async {
     mockCheckFavoriteHomeUseCase = MockCheckFavoriteHomeUseCase();
     mockRemoveFavoriteHomeUseCase = MockRemoveFavoriteHomeUseCase();
     mockAddFavoriteHomeUseCase = MockAddFavoriteHomeUseCase();
+    when(() => mockGetUpcomingUseCase.call(params: any(named: 'params')))
+        .thenAnswer((_) async => const DataSuccess(null));
+    when(() => mockGetTopRatedUseCase.call(params: any(named: 'params')))
+        .thenAnswer((_) async => const DataSuccess(null));
+    when(() => mockGetPopularUseCase.call(params: any(named: 'params')))
+        .thenAnswer((_) async => const DataSuccess(null));
     homeBloc = HomeBloc(
       mockGetUpcomingUseCase,
       mockGetTopRatedUseCase,

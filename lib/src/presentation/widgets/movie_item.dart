@@ -72,8 +72,8 @@ class MovieItem extends StatelessWidget {
     final LinearGradient appBarLinear = LinearGradient(
       colors: [
         Colors.transparent,
-        ColorName.tabbarColor.withOpacity(.1),
-        Colors.black.withOpacity(.6),
+        ColorName.tabbarColor.withValues(alpha: .1),
+        Colors.black.withValues(alpha: .6),
       ],
       stops: const [0.0, 0.7, 1.0],
       begin: FractionalOffset.topCenter,

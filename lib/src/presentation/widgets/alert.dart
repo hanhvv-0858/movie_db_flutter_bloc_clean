@@ -16,7 +16,8 @@ class Alert {
   }) {
     showDialog<void>(
       context: context,
-      builder: (context) => WillPopScope(
+      builder: (context) => PopScope(
+        canPop: false,
         child: CupertinoAlertDialog(
           title: Text(
             title,
@@ -35,7 +36,7 @@ class Alert {
           actions: <Widget>[
             TextButton(
               style: ButtonStyle(
-                textStyle: MaterialStateProperty.all(
+                textStyle: WidgetStateProperty.all(
                   const TextStyle(
                     color: Color(0xff2f81ff),
                   ),
@@ -53,7 +54,6 @@ class Alert {
             )
           ],
         ),
-        onWillPop: () async => false,
       ),
     );
   }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:ez_cache/ez_cache.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:movie_db_flutter_bloc_clean/l10n/arb/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 // Project imports:

@@ -1,3 +1,6 @@
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+
 // Package imports:
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -27,7 +30,38 @@ Future<void> $initGetIt(
 
   gh.factory<TheMovieDbService>(
     () => TheMovieDbService(
-      Dio(),
+      Dio(
+        BaseOptions(
+          baseUrl: EndPoints.theMoviebUrl,
+          contentType: null,
+          headers: {
+            'Accept': 'application/json',
+          },
+          connectTimeout: const Duration(seconds: 30),
+          receiveTimeout: const Duration(seconds: 30),
+        ),
+      )
+        ..interceptors.add(
+          InterceptorsWrapper(
+            onRequest: (options, handler) {
+              // CloudFront blocks GET requests with Content-Type header
+              if (options.method == 'GET') {
+                options.headers.remove(Headers.contentTypeHeader);
+                options.contentType = null;
+              }
+              handler.next(options);
+            },
+          ),
+        )
+        ..interceptors.add(
+          LogInterceptor(
+            requestHeader: true,
+            requestBody: true,
+            responseHeader: true,
+            responseBody: true,
+            logPrint: (o) => debugPrint('[DIO] $o'),
+          ),
+        ),
       baseUrl: EndPoints.theMoviebUrl,
     ),
   );
